@@ -1,0 +1,109 @@
+    //https://www.w3schools.com/cssref/css_colors.asp(saitul de culori )
+
+    $colordark:#222; //raspunde de fonul (poti sa shimbi culoare,diferita)
+
+    $colorlight:rgba(12, 4, 4, 0.966); //raspunde de textul scris( poti sa schimbi culoare )
+
+    $maincolor:green; //rasounde de culoare de  panourile
+
+    $colorumbra:#333; //raspunde de umbra panourile 
+
+    $duration: 4s; //raspunde  de deschidere
+
+
+
+
+
+
+
+
+    @if $maincolor==green {
+        $maincolor: lime;
+    }
+
+    body {
+        background: radial-gradient(lighten($colordark, 20%),
+                $colordark);
+        background-size: 100vw 100vh;
+
+
+    }
+
+    .fantis {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+
+            padding: 1.5em;
+            //border: 1px red solid;
+            position: absolute;
+            width: 40em;
+            height: 3em;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transform-origin: 92.9%;
+            border-radius: 1em 60% 60% 1em;
+            transition: $duration;
+
+            &::before {
+                content: "";
+                display: block;
+                background-color: black;
+                height: 1em;
+                width: 1em;
+                position: absolute;
+                right: 10%;
+                top: calc(60% - 0.5em);
+                border-radius: 100%;
+
+            }
+
+
+
+            @for $n from 1 through 13 {
+
+
+
+                &:nth-child(#{$n}) {
+                    background-color: lighten(darken($maincolor, 35.4%), 2.5% * $n);
+                    transform: rotate(0deg);
+                    box-shadow: 0 0 0.5em 0.25em lighten($colorumbra, 0.25% * $n);
+                    color:
+
+
+                        darken($colorlight, 39% - 3% * $n);
+                }
+            }
+
+
+        }
+
+        h2,
+        p {
+            margin: 0;
+
+        }
+
+        &:hover li {
+
+            @for $n from 1 through 13 {
+
+                &:nth-child(#{$n}) {
+                    transform: rotate(105deg - $n * 15deg);
+                }
+
+            }
+        }
+
+
+
+
+
+
+
+    }
